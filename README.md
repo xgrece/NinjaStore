@@ -23,7 +23,7 @@
 >CREATE TABLE roles ( id INT PRIMARY KEY IDENTITY(1,1), nombre VARCHAR(50) NOT NULL );
 
 --Tabla de Usuarios 
->CREATE TABLE usuarios ( id INT PRIMARY KEY IDENTITY(1,1), nombre VARCHAR(100) NOT NULL, email >VARCHAR(150) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL, telefono VARCHAR(20), direccion VARCHAR(255), rol_id INT NOT NULL, fecha_creacion DATETIME DEFAULT GETDATE(), FOREIGN KEY (rol_id) REFERENCES roles(id) );
+>CREATE TABLE usuarios ( id INT PRIMARY KEY IDENTITY(1,1), nombre VARCHAR(100) NOT NULL, email VARCHAR(150) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL, telefono VARCHAR(20), direccion VARCHAR(255), rol_id INT NOT NULL, fecha_creacion DATETIME DEFAULT GETDATE(), FOREIGN KEY (rol_id) REFERENCES roles(id) );
 
 --Tabla de Productos 
 >CREATE TABLE productos ( id INT PRIMARY KEY IDENTITY(1,1), nombre VARCHAR(150) NOT NULL, descripcion TEXT, precio DECIMAL(10, 2) NOT NULL, stock INT NOT NULL, fecha_lanzamiento DATE, tipo VARCHAR(50) CHECK (tipo IN ('juego', 'software')), imagen_url VARCHAR(255) );
@@ -46,3 +46,6 @@ FOREIGN KEY (pedido_id) REFERENCES pedidos(id), FOREIGN KEY (producto_id) REFERE
 
 --Tabla de Pedidos_MetodosPago (relación entre Pedidos y Métodos de Pago) 
 >CREATE TABLE pedidos_metodos_pago ( id INT PRIMARY KEY IDENTITY(1,1), pedido_id INT NOT NULL, metodo_pago_id INT NOT NULL, FOREIGN KEY (pedido_id) REFERENCES pedidos(id), FOREIGN KEY (metodo_pago_id) REFERENCES metodos_pago(id) );
+
+---Agregar columna ReClave a la tabla usuario
+>ALTER TABLE Usuarios ADD ReClave NVARCHAR(MAX) NULL;
