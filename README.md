@@ -6,11 +6,11 @@
 - Mariano Fernandez Blanco
 - Augusto Ezequiel Cott
 
-##Codigo para conectarse a la base de datos 
+## Codigo para conectarse a la base de datos 
 sacar los parentesis en los lugares de relleno
 Scaffold-DbContext "Server=(server name);Initial Catalog=(nombre bd);Integrated Security=True;Encrypt=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
 
-##Tablas BD (SQL server)
+## Tablas BD (SQL server)
 - (Los titulos serian comentarios)
   
 --Creación de la base de datos
