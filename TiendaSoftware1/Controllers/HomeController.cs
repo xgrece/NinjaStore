@@ -16,8 +16,16 @@ namespace TiendaSoftware1.Controllers
 
         public IActionResult Index()
         {
+            var productos = db.Productos.ToList();
+            return View(productos);
+        }
+
+
+        public IActionResult GestionUsuarios()
+        {
             return View(db.Usuarios.ToList());
         }
+
 
         public IActionResult SignUp()
         {
@@ -27,6 +35,7 @@ namespace TiendaSoftware1.Controllers
         [HttpPost]
         public IActionResult SignUp(Usuario usuario)
         {
+            // Verificar si el correo electrónico ya existe
             if (db.Usuarios.Any(x => x.Email == usuario.Email))
             {
                 ViewBag.Notification = "Esta cuenta ya existe";
@@ -34,15 +43,18 @@ namespace TiendaSoftware1.Controllers
             }
             else
             {
+                // Asignar el rol predeterminado (por ejemplo, RolId = 1 para 'Usuario')
+                usuario.RolId = 1; // Asegúrate de que este ID corresponde al rol de 'Usuario' en la tabla Roles
+
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
 
-                //HttpContext.Session.SetString("idUsuario", usuario.IdUsuario.ToString());
+                // Guardar información de sesión
                 HttpContext.Session.SetString("email", usuario.Email.ToString());
                 HttpContext.Session.SetString("clave", usuario.Password.ToString());
+
                 return RedirectToAction("Index", "Home");
             }
-
         }
 
         [HttpGet]
