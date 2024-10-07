@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TiendaSoftware1.styles.css" asp-append-version="true" />
     <link rel="icon" href="~/assets/SIN_FONDO.png" type="image/x-icon" />
+    @RenderSection("Styles", required: false) <!-- Sección para estilos específicos -->
 </head>
 <body>
     <header>
@@ -32,6 +33,21 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
+                        @if (Context.Session.GetString("email") != null)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link">
+                                    <strong>@Context.Session.GetString("nombre")</strong> 
+                                    <br />
+                                    <small>@Context.Session.GetString("email")</small> 
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Logout" asp-controller="Home">Logout</a>
+                            </li>
+                        }
+                else
+                {
                         <!-- Enlaces alineados a la derecha -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Signup">Sign Up</a>
@@ -39,6 +55,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
+                }
                     </ul>
                 </div>
             </div>

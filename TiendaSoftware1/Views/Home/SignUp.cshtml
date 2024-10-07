@@ -4,13 +4,19 @@
     ViewData["Title"] = "Sign Up";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/form.css" /> 
+}
+
 <h1>Sign Up</h1>
 
 <h4>Usuario</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="SignUp">
+    <div class="col-md-4"></div>
+        <div id="main-container" class="container">
+            <div class="form-wrapper">
+                <form asp-action="SignUp">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -45,10 +51,10 @@
             <div class="form-group text-danger">
                 <label>@ViewBag.Notification</label>
             </div>
-        </form>
-    </div>
+            </form>
+        </div>
+        </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
